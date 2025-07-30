@@ -1,132 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shivani Bhure | Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <!-- Google Fonts for a more attractive look -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivani Bhure - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .skill-tag { transition: all 0.3s ease; }
+        .skill-tag:hover { transform: scale(1.05); }
+        .timeline-item { position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -8px; top: 8px; width: 16px; height: 16px; background: #667eea; border-radius: 50%; }
+        .animate-fade-in { animation: fadeIn 0.6s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section-reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .section-reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
-<body>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> <!-- Added fixed-top -->
-    <div class="container-fluid px-4">
-      <a class="navbar-brand" href="#">Shivani Bhure</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarNav" aria-controls="navbarNav"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero-section bg-light text-center py-5">
-    <div class="container">
-      <img src="shivani.jpg" alt="Shivani Bhure" class="profile-img mb-3"> <!-- Placeholder for your image -->
-      <h1 class="display-5 fw-bold">Shivani Bhure</h1>
-      <p class="lead">Aspiring Computer Science Engineer | Python & ML Enthusiast</p>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section class="container my-5 py-4" id="about">
-    <h2 class="section-title">Objective</h2>
-    <p>
-      Passionate Computer Science graduate seeking an entry-level role to apply technical knowledge and contribute to innovative projects while continuously learning and growing.
-    </p>
-
-    <h2 class="section-title">Education</h2>
-    <ul>
-      <li><strong>BE in Computer Science and Engineering (2022-2026)</strong> – Prof. Ram Meghe Institute of Technology and Research, CGPA: 9.13</li>
-      <li><strong>HSC (2020-2022)</strong> – Rajeshwar Union Junior College, 84.83%</li>
-      <li><strong>SSC (2015-2020)</strong> – Rajeshwar Union High School, 95.60%</li>
-    </ul>
-
-    <h2 class="section-title">Skills</h2>
-    <div class="skills-grid"> <!-- Added a div for skills for better layout -->
-      <p><strong>Technical:</strong> Python, DSA, MySQL, Java, HTML, CSS, SDLC, ML, Data Analysis, Git</p>
-      <p><strong>Soft Skills:</strong> Team Work, Problem Solving, Communication</p>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="projects-section py-5" id="projects"> <!-- Added projects-section class -->
-    <div class="container">
-      <h2 class="section-title text-center mb-4">Projects</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card h-100 project-card">
-            <div class="card-body">
-              <h5 class="card-title">FitWithMe: ML Health Advisory</h5>
-              <p class="card-text">Built a smart health system using Django & ML that offers fitness, diet, and wellness recommendations. Used MySQL for data storage and Matplotlib for visualizations.</p>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-gray-800">Shivani Bhure</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+                    <a href="#education" class="text-gray-600 hover:text-blue-600 transition-colors">Education</a>
+                    <a href="#experience" class="text-gray-600 hover:text-blue-600 transition-colors">Experience</a>
+                    <a href="#projects" class="text-gray-600 hover:text-blue-600 transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
-          </div>
-        </div>
-        
-        <div class="col-md-6">
-          <div class="card h-100 project-card">
-            <div class="card-body">
-              <h5 class="card-title">Find My Cartoon Twin</h5>
-              <p class="card-text">Created a web app that finds your cartoon twin using OpenAI’s CLIP model and cosine similarity. Stack: Python, Django, Torch, NumPy.</p>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#about" class="block text-gray-600 hover:text-blue-600 py-2">About</a>
+                <a href="#education" class="block text-gray-600 hover:text-blue-600 py-2">Education</a>
+                <a href="#experience" class="block text-gray-600 hover:text-blue-600 py-2">Experience</a>
+                <a href="#projects" class="block text-gray-600 hover:text-blue-600 py-2">Projects</a>
+                <a href="#contact" class="block text-gray-600 hover:text-blue-600 py-2">Contact</a>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Experience -->
-  <section class="container my-5 py-4" id="experience">
-    <h2 class="section-title">Experience</h2>
-    <h5>Python Developer Intern – SohamGlobal (Feb 2025 – Jul 2025)</h5>
-    <ul>
-      <li>Analyzed user fitness data using Numpy, Pandas, and Matplotlib.</li>
-      <li>Built a movie recommender system using cosine similarity and Scikit-learn.</li>
-    </ul>
-  </section>
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-24 pb-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="animate-fade-in">
+                <div class="w-32 h-32 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center">
+                    <i class="fas fa-user text-6xl text-white/80"></i>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-4">Shivani Bhure</h1>
+                <p class="text-xl md:text-2xl mb-6 text-white/90">Computer Science Graduate & ML Enthusiast</p>
+                <p class="text-lg mb-8 max-w-2xl mx-auto text-white/80">Passionate about applying technical knowledge to innovative projects while continuously learning and growing in the field of technology.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#contact" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">Get In Touch</a>
+                    <div class="flex items-center space-x-4 text-white/90">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9822219524</span>
+                        <span class="mx-2">⋄</span>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Amravati, Maharashtra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Achievements -->
-  <section class="achievements-section py-5" id="achievements">
-    <div class="container">
-      <h2 class="section-title text-center mb-4">Achievements</h2>
-      <ul>
-        <li>Completed <a href="https://cert.diceid.com/cid/GIzNQ29gj7" target="_blank">Machine Learning Internship at Skilldunia</a></li>
-        <li>NPTEL Certified: <a href="https://www.linkedin.com/posts/shivani-bhure-80b144286_completed-a-course-of-python-for-data-science-activity-7216159523063889920-kvno" target="_blank">Python for Data Science</a></li>
-      </ul>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-reveal">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            I'm a passionate Computer Science graduate with a strong foundation in machine learning, data analysis, and web development. Currently pursuing my BE in Computer Science and Engineering with an impressive CGPA of 9.13.
+                        </p>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            My journey in technology has been driven by curiosity and a desire to solve real-world problems through innovative solutions. I specialize in Python development, machine learning, and creating intelligent systems that make a difference.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="mailto:shivanisbhure@gmail.com" class="text-blue-600 hover:text-blue-800 text-2xl">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-2xl">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-2xl">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-800">Skills Overview</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">Technical Skills</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                                    <span class="skill-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Machine Learning</span>
+                                    <span class="skill-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Data Analysis</span>
+                                    <span class="skill-tag bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">MySQL</span>
+                                    <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Java</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-2">Soft Skills</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Team Work</span>
+                                    <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Problem Solving</span>
+                                    <span class="skill-tag bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">Communication</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Contact -->
-  <section class="container my-5 py-4" id="contact">
-    <h2 class="section-title">Contact</h2>
-    <p><i class="fas fa-envelope me-2"></i>Email: <a href="mailto:shivanisbhure@gmail.com">shivanisbhure@gmail.com</a></p>
-    <p><i class="fab fa-linkedin me-2"></i>LinkedIn: <a href="https://www.linkedin.com/in/shivani-bhure-80b144286/" target="_blank">shivani-bhure</a></p>
-    <p><i class="fab fa-github me-2"></i>GitHub: <a href="https://www.github.com/" target="_blank">github.com</a></p>
-    <p><i class="fas fa-map-marker-alt me-2"></i>Location: Amravati, Maharashtra | <i class="fas fa-phone me-2"></i>Phone: +91 9822219524</p>
-  </section>
+    <!-- Education Section -->
+    <section id="education" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-reveal">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Education</h2>
+                <div class="space-y-8">
+                    <div class="timeline-item bg-white p-8 rounded-2xl shadow-lg card-hover ml-8">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-800">BE in Computer Science and Engineering</h3>
+                            <span class="text-blue-600 font-semibold">2022-2026</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Prof. Ram Meghe Institute of Technology and Research, Badnera-Amravati</p>
+                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full inline-block font-semibold">
+                            CGPA: 9.13
+                        </div>
+                    </div>
 
-  <footer class="bg-dark text-light text-center py-3">
-    © 2025 Shivani Bhure. All rights reserved.
-  </footer>
+                    <div class="timeline-item bg-white p-8 rounded-2xl shadow-lg card-hover ml-8">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-800">Higher Secondary Certificate</h3>
+                            <span class="text-blue-600 font-semibold">2020-2022</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Rajeshwar Union Junior College, Badnera</p>
+                        <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full inline-block font-semibold">
+                            84.83% in State Boards
+                        </div>
+                    </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Font Awesome for icons -->
-  <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
-  <!-- Replace 'your-font-awesome-kit-id.js' with your actual Font Awesome kit ID for icons to show -->
-</body>
+                    <div class="timeline-item bg-white p-8 rounded-2xl shadow-lg card-hover ml-8">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-800">Secondary School Certificate</h3>
+                            <span class="text-blue-600 font-semibold">2015-2020</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Rajeshwar Union High School, Badnera</p>
+                        <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full inline-block font-semibold">
+                            95.60% in State Boards
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-reveal">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Experience</h2>
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Python Developer Intern</h3>
+                            <p class="text-lg text-blue-600 font-semibold">SohamGlobal</p>
+                        </div>
+                        <span class="text-gray-600 font-semibold bg-white px-4 py-2 rounded-full">Feb 2025 - Jul 2025</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-gray-700">Using Numpy and Pandas in Python for data analysis, Matplotlib for visualization, and various machine learning models, including Linear Regression and Random Forest, for predicting fitness factors of users.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-gray-700">Built a movie recommendation system using cosine similarity on the TMDB dataset, extracting features like genres and cast; implemented with Scikit-learn and Pandas in a Jupyter Notebook.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-reveal">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Featured Projects</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-heartbeat text-3xl text-red-500 mr-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800">FitWithMe</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">ML-Driven Health Monitoring and Advisory System</p>
+                        <p class="text-gray-700 mb-6">Designed a smart health monitoring system leveraging machine learning to analyze user data and deliver personalized fitness, diet, and wellness recommendations for improved lifestyle and preventive health management.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Django</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Scikit-learn</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">MySQL</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-smile text-3xl text-yellow-500 mr-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-800">Find-My-Cartoon Twin</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Human to Cartoon Face Matching using CLIP</p>
+                        <p class="text-gray-700 mb-6">Developed a web-based application that identifies the most visually similar cartoon character for a given human face using OpenAI's CLIP model and cosine similarity.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Django</span>
+                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">PyTorch</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">CLIP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-reveal">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Achievements</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-certificate text-3xl text-green-500 mr-4"></i>
+                            <h3 class="text-xl font-bold text-gray-800">Machine Learning Internship</h3>
+                        </div>
+                        <p class="text-gray-700">Completed comprehensive machine learning internship at Skilldunia, gaining hands-on experience with various ML algorithms and real-world applications.</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-award text-3xl text-blue-500 mr-4"></i>
+                            <h3 class="text-xl font-bold text-gray-800">NPTEL Certification</h3>
+                        </div>
+                        <p class="text-gray-700">NPTEL Certified in Python for Data Science, demonstrating proficiency in data manipulation, analysis, and visualization using Python.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 gradient-bg text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-reveal text-center">
+                <h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
+                <p class="text-xl mb-12 text-white/90">I'm always open to discussing new opportunities and interesting projects!</p>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                        <i class="fas fa-envelope text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Email</h3>
+                        <a href="mailto:shivanisbhure@gmail.com" class="text-white/90 hover:text-white">shivanisbhure@gmail.com</a>
+                    </div>
+                    
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                        <i class="fas fa-phone text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                        <a href="tel:+919822219524" class="text-white/90 hover:text-white">+91 9822219524</a>
+                    </div>
+                    
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                        <i class="fas fa-map-marker-alt text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Location</h3>
+                        <p class="text-white/90">Amravati, Maharashtra</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-6">
+                    <a href="mailto:shivanisbhure@gmail.com" class="bg-white/20 hover:bg-white/30 p-4 rounded-full transition-colors">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/shivani-bhure-80b144286/" class="bg-white/20 hover:bg-white/30 p-4 rounded-full transition-colors">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="https://github.com/Shivanibhure" class="bg-white/20 hover:bg-white/30 p-4 rounded-full transition-colors">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>&copy; 2024 Shivani Bhure. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for section reveals
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all section-reveal elements
+        document.querySelectorAll('.section-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/95');
+            } else {
+                navbar.classList.remove('bg-white/95');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966ed67b40be4734',t:'MTc1MzgxNTQwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
